@@ -1,0 +1,18 @@
+<div class='mb-3 card card-body'>
+  <div class='me-4'>
+    <%= image_tag tweet.twitter_account.image, class: 'rounded-circle' %>
+    <%= link_to "@#{tweet.twitter_account.nickname}", "https://twitter.com/#{tweet.twitter_account.nickname}", target: :_blank %>
+  </div>
+  <div class='me-2 mb-3'>
+    <% if tweet.published?%>
+      <%= link_to 'View tweet', "https://twitter.com/#{tweet.twitter_account.nickname}/status/#{tweet.tweet_id}", target: :_blank %>
+    <% else %>
+      Scheduled for: <%= l tweet.publish_at, format: :long %>
+      <!-- l is the localisation helper -->
+      <br>
+      <%= link_to 'Edit tweet', edit_tweet_path(tweet) %>
+    <% end %>
+  </div>
+  <%= tweet.body %>
+  
+</div>

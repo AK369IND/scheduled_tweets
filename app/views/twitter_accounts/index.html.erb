@@ -1,0 +1,19 @@
+<div class='d-flex align-items-center justify-content-between'>
+  <h1>Linked Twitter Accounts</h1>
+
+  <div>
+    <%= button_to 'Link an account', '/auth/twitter', method: :post, class: 'btn btn-primary' %>
+  </div>
+</div>
+
+<% @twitter_accounts.each do |twitter_account| %>
+  <div class='d-flex align-items-center mb-4'>
+    <div class='me-4'>
+      <%= image_tag twitter_account.image, class: 'rounded-circle' %>
+      <%= link_to "@#{twitter_account.nickname}", "https://twitter.com/#{twitter_account.nickname}", target: :_blank %>
+    </div>
+
+    <%= button_to 'De-link account', twitter_account, method: :delete, data: {confirm: "Are you sure you want to de-link your twitter account?"}, class: 'btn btn-warning' %>
+    <!-- just metioning the model instance- twitter_account makes rails generate the route itself for it -->
+  </div>
+<% end %>

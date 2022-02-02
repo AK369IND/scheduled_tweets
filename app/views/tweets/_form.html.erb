@@ -1,0 +1,24 @@
+<%= form_with model: tweet do |form|%>
+  <%= render 'shared/form_errors.html.erb', form: form %>
+  <div class='mb-3'>
+    <%= form.label :twitter_account_id %>
+    <%= form.collection_select :twitter_account_id, Current.user.twitter_accounts, :id, :nickname, {}, {class: 'form-control'} %>
+    <!-- submit :id and display :nickname -->
+  </div>
+
+  <div class='mb-3'>
+    <%= form.label :body %>
+    <%= form.text_area :body, class: 'form-control' %>
+  </div>
+
+  <div class='mb-3'>
+    <%= form.label :publish_at %>
+    <%= form.datetime_select :publish_at, class: 'form-control' %>
+  </div>
+
+  <%= form.button 'Schedule', class: 'btn btn-primary' %>
+  <% if form.object.persisted? %> <!-- check if saved in db -->
+    <%= link_to 'Delete', form.object, method: :delete, data: {confirm: 'Are you sure you want to unschedule this tweet?'}, class: 'btn btn-danger' %>
+    <!-- using button_to here for delete makes schedule button to delete the tweet -->
+  <% end %>
+<% end %>

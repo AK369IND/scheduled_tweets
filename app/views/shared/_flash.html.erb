@@ -1,0 +1,6 @@
+<% if !flash.empty? %>
+  <% flash.each do |err_msg_type, err_message| %>
+    <div class="alert alert-<%=err_msg_type%> mt-4"> <%= err_message %> </div>
+  <% end %>
+  <% flash.discard %>
+<% end %>

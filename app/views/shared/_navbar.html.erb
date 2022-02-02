@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <%= link_to "ScheduledTweets", root_path, class:"navbar-brand" %>    
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Tweets", tweets_path, class:"nav-link" %>    
+        </li>
+        <li class="nav-item">
+          <%= link_to "Linked Accounts", twitter_accounts_path, class:"nav-link" %>    
+        </li>
+        <li class="nav-item">
+          <%= link_to "About", about_path, class:"nav-link" %>    
+        </li>
+      </ul>
+    </div>
+
+    <div class="navbar-nav mas-auto mb-2 mb-lg-0">
+      <% if Current.user %>
+        <li class="nav-item">
+          <span><%= link_to Current.user.email, edit_password_path, class: "nav-link"%></span>
+        </li> 
+        <li class="nav-item">
+          <%= button_to 'Logout', logout_path, method: :delete %>
+          <!-- This actually creates a hidden form that posts the delete request to our app.
+          
+          or we can use:
+            <%= link_to 'Logout', logout_path, method: :delete %>
+
+            But this is not recommended as links actually are GET request and ror tranforms them into DELETE
+            request.
+          -->
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Sign Up", sign_up_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign In", sign_in_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+    </div>
+
+  </div>
+</nav>
