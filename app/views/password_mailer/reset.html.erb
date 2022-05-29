@@ -6,5 +6,6 @@ Reset password
 </div>
 
 <p>
+  <!-- Notice how we wrote _url instead of path as this link is outside of our app in the mail inbox -->
   <%= link_to 'Password Reset', password_reset_edit_url(token: @token) %>
 </p>
